@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Weather Information</title>
+</head>
+</body>
+	<h2 th:text = "${cityName}"></h2>
+	<p th:text = "${temperature}"></p>
+	<p th:text = "${weatherCondition}"></p>
+	<img th:src = "${weatherIcon}" alt ="Weather Icon">
+</body>
+</html>
