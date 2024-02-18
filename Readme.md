@@ -40,6 +40,9 @@ mvn spring-boot:run
 * Click on the search button or press Enter to view the current weather conditions for the specified city.
 * The weather information, including temperature and weather description, will be displayed below the search bar.
 
+##Screenshot
+ ![Weather App Screenshot](projectScreenshot.png)
+*Screenshot: Current weather conditions for Toronto, Canada*
 
 ## Authors
 
