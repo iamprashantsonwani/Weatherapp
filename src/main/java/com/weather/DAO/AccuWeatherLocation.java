@@ -9,6 +9,9 @@ public class AccuWeatherLocation {
 	
 	@JsonProperty("LocalizedName")
     private String localizedName;
+	
+	@JsonProperty("Country")
+    private Country country;
     
 	public String getKey() {
 		return key;

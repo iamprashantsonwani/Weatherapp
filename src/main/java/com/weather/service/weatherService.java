@@ -1,21 +1,12 @@
 package com.weather.service;
 
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import org.springframework.ui.Model;
 import com.weather.DAO.AccuWeatherLocation;
-import com.weather.serviceImpl.AccuWeatherClient;
 
-@Service
-public class weatherService {
+public interface weatherService {
 
-	@Autowired
-	private AccuWeatherClient accuWeatherClient;
-	
-	public  List<AccuWeatherLocation> searchCities(String city) {
-		return accuWeatherClient.searchCities(city);
-	}
-	
+	List<AccuWeatherLocation> searchCities(String city);
+
+	String getWeather(String cityKey, String cityName, String countryName, Model model);
 }

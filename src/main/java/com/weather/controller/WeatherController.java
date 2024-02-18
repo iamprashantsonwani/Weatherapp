@@ -18,76 +18,27 @@ import com.weather.service.weatherService;
 
 @Controller
 public class WeatherController {
-	
+
 	@Value("${accuweather.api.key}")
 	private String accuweatherApiKey;
-	
+
 	@GetMapping("/")
-    public String index() {
-        return "index";
-    }
-	 
-	
-	//private final weatherService weatherservice;
-	
-	@GetMapping("/weather")
-	public String getWeather(@RequestParam String city, Model model) {
-		
-		String accuweatherUrl = "http://dataservice.accuweather.com/locations/v1/cities/search";
-        String apiKeyParam = "apikey=" + accuweatherApiKey;
-        String cityParam = "q=" + city;
-		
-        String url = accuweatherUrl + "?" + apiKeyParam + "&" + cityParam;
-        
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<AccuWeatherLocation[]> responseEntity = restTemplate.getForEntity(url, AccuWeatherLocation[].class);
-        //response is not picking up
-        try{
-        	if(responseEntity.getStatusCode().is2xxSuccessful()) {
-            	AccuWeatherLocation[] locations = responseEntity.getBody();
-            	
-            	if(locations != null && locations.length > 0) {
-            		AccuWeatherLocation location = locations[0];
-            		
-            		String weatherUrl = "http://dataservice.accuweather.com/currentconditions/v1/" + location.getKey();
-                    url = weatherUrl + "?" + apiKeyParam;
-                    
-                    ResponseEntity<AccuWeatherCurrentConditions[]> weatherResponseEntity = restTemplate.getForEntity(url, AccuWeatherCurrentConditions[].class);
-                    
-                    if(weatherResponseEntity.getStatusCode().is2xxSuccessful()) {
-                    	AccuWeatherCurrentConditions[] conditions = weatherResponseEntity.getBody();
-                    	
-                    	if(conditions != null && conditions.length > 0) {
-                    		AccuWeatherCurrentConditions condition = conditions[0];
-                    		
-                    		model.addAttribute("cityName", location.getLocalizedName());
-                    		model.addAttribute("temperature", condition.getTemperature().getMetric().getValue()+ " °C");
-                    		model.addAttribute("weatherCondition", condition.getWeatherText());
-                    		model.addAttribute("weatherIcon", condition.getWeatherIcon());
-                    		return "weather-info";
-                    	}
-                    }
-            	}
-            }
-        }
-        	catch (Exception e) {
-                e.printStackTrace();
-                return "error";
-            }
-        
-        
-		return "error";
+	public String index() {
+		return "index";
 	}
-	
-	//@GetMapping("/search")
-    /*public List<AccuWeatherLocation> searchCities(@RequestParam String city) {
-        return weatherservice.searchCities(city);
-    }*/
-	/* public List<AccuWeatherLocation> searchCities(String cityName) {
-        String url = "http://dataservice.accuweather.com + "/locations/v1/cities/search?apikey=" + accuweatherApiKey + "&q=" + cityName;
 
-        AccuWeatherLocation[] locations = restTemplate.getForObject(url, AccuWeatherLocation[].class);
+	@Autowired
+	private weatherService weatherService;
 
-        return Arrays.asList(locations);
-    }*/
+	@GetMapping("/search")
+	public ResponseEntity<List<AccuWeatherLocation>> searchCities(@RequestParam String city) {
+		List<AccuWeatherLocation> cities = weatherService.searchCities(city);
+		return ResponseEntity.ok(cities);
+	}
+
+	public String getWeather(@RequestParam String cityKey, @RequestParam String cityName,
+			@RequestParam String countryName, Model model) {
+		return weatherService.getWeather(cityKey, cityName, countryName, model);
+	}
+
 }

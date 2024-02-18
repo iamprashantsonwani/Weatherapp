@@ -1,31 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/css/output.css}">
-    <title>Weather App</title>
-</head>
-<body class="bg-gray-400 bg-[url('/img/scenery.jpg')] flex justify-center content-center bg-no-repeat bg-fixed bg-center bg-cover font-sans">
 
-	<div class="float font-sans w-96 h-96 mt-20 border-solid">
-		<div class="float-left w-60 h-20 bg-white-900 bg-opacity-15 pl-8 pr-8 rounded-md shadow-md">    
-		   <label for="cityInput" class="text-base font-semibold">Enter city:</label>
-		        <input type="text" id="cityInput" placeholder="e.g., Toronto"
-		               class="px-2 py-2 border rounded-md focus:outline-none focus:border-blue-500">
-		</div> 
-		<div class= "float-left w-50 h-10 py-2 px-3 top-100 bg-indigo-600 text-white text-sm leading-6 font-medium rounded-lg">
-		   <button th:onclick="getWeather()">
-		        Get Weather
-		     </button>
-		 </div> 
-		 <div id="weatherInfo" class=" bg-black bg-opacity-25 y clear-left w-50 h-30 p-1 mt-5 border-solid">
-		         Weather information will be displayed here 
-		 </div> 
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" th:href="@{/css/output.css}">
+	<title>Weather App</title>
+</head>
+
+<body class="bg-scenery font-sans">
+	<div class="center-content">
+		<div class="bg-black w-64 h-64 bg-opacity-25 float font-sans rounded-md border-solid">
+			<div class="bg-white-900 w-64 h-20 bg-opacity-15 pl-8 pr-8 rounded-md shadow-md">
+				<label for="cityInput" class="text-base font-semibold">Enter city:</label>
+				<input type="text" id="cityInput" placeholder="e.g., Toronto"
+					class="px-2 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+				<div id="citySuggestions" class="bg-white"></div>
+			</div>
+
+			<div id="weatherInfo" class="hidden bg-opacity-25 w-50 h-30 y clear-left p-1 mt-5 border-solid"></div>
+		</div>
 	</div>
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script th:src="@{/js/weather.js}"></script>
-
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	<script th:src="@{/js/weather.js}"></script>
 </body>
+
 </html>
