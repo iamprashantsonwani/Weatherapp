@@ -7,10 +7,14 @@
 
 ## Getting Started
 
-### Dependencies
+### Technologies used
+* HTML/CSS
+* JavaScript
+* Spring Boot (for backend)
+* Thymeleaf (for server-side templating)
+* AccuWeather API (for weather data)
+* Bootstrap (for styling)
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
 
 ### Installing
 
@@ -37,13 +41,13 @@ mvn spring-boot:run
 * The weather information, including temperature and weather description, will be displayed below the search bar.
 
 
-
 ## Authors
 
 Prashant Sonwani
 
 ## Version History
-
+* 0.3
+	* readme updated
 * 0.2
     * Refactor code for improved readability and performance
     * Implement search functionality for cities
