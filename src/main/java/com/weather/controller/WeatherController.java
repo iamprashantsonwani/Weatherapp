@@ -35,7 +35,8 @@ public class WeatherController {
 		List<AccuWeatherLocation> cities = weatherService.searchCities(city);
 		return ResponseEntity.ok(cities);
 	}
-
+	
+	@GetMapping("/weather")
 	public String getWeather(@RequestParam String cityKey, @RequestParam String cityName,
 			@RequestParam String countryName, Model model) {
 		return weatherService.getWeather(cityKey, cityName, countryName, model);
