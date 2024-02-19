@@ -42,7 +42,7 @@ mvn spring-boot:run
 
 ##Screenshot
  ![Weather App Screenshot](projectScreenshot.png)
-*Screenshot: Current weather conditions for Toronto, Canada*
+*Screenshot: Current weather conditions for Pune, India*
 
 ## Authors
 
