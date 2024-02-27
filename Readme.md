@@ -13,7 +13,7 @@
 * Spring Boot (for backend)
 * Thymeleaf (for server-side templating)
 * AccuWeather API (for weather data)
-* Bootstrap (for styling)
+* Tailwind (for styling)
 
 
 ### Installing
